@@ -1,6 +1,12 @@
 import { X, Bone, Brain, Heart, Apple } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+// Import anatomical images
+import skeletonImage from '@/assets/skeleton-system.png';
+import neuronImage from '@/assets/neuron-system.png';
+import heartImage from '@/assets/heart-system.png';
+import digestiveImage from '@/assets/digestive-system.png';
+
 interface InfoPanelProps {
   region: string | null;
   onClose: () => void;
@@ -16,12 +22,15 @@ interface SystemInfo {
   titleKey: string;
   descKey: string;
   functionKey: string;
+  image: string;
+  imageAlt: string;
   cellTypes: CellType[];
   extraSections?: {
     titleKey: string;
     items: { nameKey: string; descKey: string }[];
   }[];
   colorClass: string;
+  accentColor: string;
 }
 
 const systemData: Record<string, SystemInfo> = {
@@ -30,18 +39,23 @@ const systemData: Record<string, SystemInfo> = {
     titleKey: 'skeleton',
     descKey: 'skeleton_desc',
     functionKey: 'skeleton_function',
+    image: skeletonImage,
+    imageAlt: 'Human skeletal system anatomy',
     cellTypes: [
       { nameKey: 'osteocytes', descKey: 'osteocytes_desc' },
       { nameKey: 'osteoblasts', descKey: 'osteoblasts_desc' },
       { nameKey: 'osteoclasts', descKey: 'osteoclasts_desc' },
     ],
     colorClass: 'bg-skeleton text-foreground',
+    accentColor: 'border-skeleton',
   },
   nervous: {
     icon: <Brain className="w-6 h-6" />,
     titleKey: 'nervous',
     descKey: 'nervous_desc',
     functionKey: 'nervous_function',
+    image: neuronImage,
+    imageAlt: 'Neuron cell structure',
     cellTypes: [
       { nameKey: 'neurons', descKey: 'neurons_desc' },
       { nameKey: 'glial', descKey: 'glial_desc' },
@@ -62,12 +76,15 @@ const systemData: Record<string, SystemInfo> = {
       },
     ],
     colorClass: 'bg-nervous text-primary-foreground',
+    accentColor: 'border-nervous',
   },
   heart: {
     icon: <Heart className="w-6 h-6" />,
     titleKey: 'heart',
     descKey: 'heart_desc',
     functionKey: 'heart_function',
+    image: heartImage,
+    imageAlt: 'Human heart anatomy diagram',
     cellTypes: [
       { nameKey: 'cardiac_muscle', descKey: 'cardiac_muscle_desc' },
       { nameKey: 'pacemaker', descKey: 'pacemaker_desc' },
@@ -83,12 +100,15 @@ const systemData: Record<string, SystemInfo> = {
       },
     ],
     colorClass: 'bg-heart text-primary-foreground',
+    accentColor: 'border-heart',
   },
   digestive: {
     icon: <Apple className="w-6 h-6" />,
     titleKey: 'digestive',
     descKey: 'digestive_desc',
     functionKey: 'digestive_function',
+    image: digestiveImage,
+    imageAlt: 'Human digestive system anatomy',
     cellTypes: [
       { nameKey: 'epithelial', descKey: 'epithelial_desc' },
       { nameKey: 'goblet', descKey: 'goblet_desc' },
@@ -107,6 +127,7 @@ const systemData: Record<string, SystemInfo> = {
       },
     ],
     colorClass: 'bg-digestive text-primary-foreground',
+    accentColor: 'border-digestive',
   },
 };
 
@@ -131,7 +152,7 @@ export function InfoPanel({ region, onClose }: InfoPanelProps) {
         className={`fixed top-0 ${isRTL ? 'left-0' : 'right-0'} h-full w-full sm:w-96 lg:w-[420px] bg-panel-bg border-${isRTL ? 'r' : 'l'} border-panel-border shadow-panel z-50 overflow-y-auto panel-enter`}
       >
         {/* Header */}
-        <div className={`sticky top-0 ${data.colorClass} px-6 py-4 flex items-center justify-between`}>
+        <div className={`sticky top-0 ${data.colorClass} px-6 py-4 flex items-center justify-between z-10`}>
           <div className="flex items-center gap-3">
             {data.icon}
             <h2 className="text-xl font-semibold">{t(data.titleKey)}</h2>
@@ -147,14 +168,24 @@ export function InfoPanel({ region, onClose }: InfoPanelProps) {
 
         {/* Content */}
         <div className="p-6 space-y-6">
+          {/* Main Image */}
+          <div className="animate-fade-in rounded-xl overflow-hidden border-2 border-border shadow-md">
+            <img
+              src={data.image}
+              alt={data.imageAlt}
+              className="w-full h-auto object-cover"
+              loading="lazy"
+            />
+          </div>
+
           {/* Description */}
-          <div className="animate-fade-in">
+          <div className="animate-fade-in" style={{ animationDelay: '0.1s' }}>
             <p className="text-foreground leading-relaxed">{t(data.descKey)}</p>
           </div>
 
           {/* Function */}
-          <div className="animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            <div className="bg-secondary rounded-xl p-4">
+          <div className="animate-fade-in" style={{ animationDelay: '0.15s' }}>
+            <div className={`bg-secondary rounded-xl p-4 border-l-4 ${data.accentColor}`}>
               <p className="text-secondary-foreground text-sm leading-relaxed">{t(data.functionKey)}</p>
             </div>
           </div>
@@ -169,7 +200,7 @@ export function InfoPanel({ region, onClose }: InfoPanelProps) {
               {data.cellTypes.map((cell, index) => (
                 <div
                   key={cell.nameKey}
-                  className="bg-card border border-border rounded-lg p-4 hover:shadow-md transition-shadow"
+                  className={`bg-card border border-border rounded-lg p-4 hover:shadow-md transition-all duration-200 hover:border-l-4 hover:${data.accentColor}`}
                   style={{ animationDelay: `${0.3 + index * 0.1}s` }}
                 >
                   <h4 className="font-medium text-foreground">{t(cell.nameKey)}</h4>
