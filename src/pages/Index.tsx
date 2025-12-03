@@ -1,12 +1,33 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import { Header } from '@/components/Header';
+import { HumanBody } from '@/components/HumanBody';
+import { InfoPanel } from '@/components/InfoPanel';
 
 const Index = () => {
+  const [activeRegion, setActiveRegion] = useState<string | null>(null);
+
+  const handleRegionClick = (region: string) => {
+    setActiveRegion(region);
+  };
+
+  const handleClosePanel = () => {
+    setActiveRegion(null);
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Header />
+      
+      <main className="container mx-auto px-4 py-8">
+        <div className={`transition-all duration-300 ${activeRegion ? 'lg:mr-[420px]' : ''}`}>
+          <HumanBody
+            onRegionClick={handleRegionClick}
+            activeRegion={activeRegion}
+          />
+        </div>
+      </main>
+
+      <InfoPanel region={activeRegion} onClose={handleClosePanel} />
     </div>
   );
 };
