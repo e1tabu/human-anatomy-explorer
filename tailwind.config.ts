@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -60,31 +60,16 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Custom body system colors
-        skeleton: {
-          DEFAULT: "hsl(var(--skeleton))",
-          glow: "hsl(var(--skeleton-glow))",
-        },
-        nervous: {
-          DEFAULT: "hsl(var(--nervous))",
-          glow: "hsl(var(--nervous-glow))",
-        },
-        heart: {
-          DEFAULT: "hsl(var(--heart))",
-          glow: "hsl(var(--heart-glow))",
-        },
-        digestive: {
-          DEFAULT: "hsl(var(--digestive))",
-          glow: "hsl(var(--digestive-glow))",
-        },
-        xray: {
-          bg: "hsl(var(--xray-bg))",
-          bone: "hsl(var(--xray-bone))",
-          glow: "hsl(var(--xray-glow))",
-        },
-        panel: {
-          bg: "hsl(var(--panel-bg))",
-          border: "hsl(var(--panel-border))",
+        // Body system colors
+        skeleton: "hsl(var(--skeleton))",
+        nervous: "hsl(var(--nervous))",
+        heart: "hsl(var(--heart))",
+        digestive: "hsl(var(--digestive))",
+        respiratory: "hsl(var(--respiratory))",
+        cell: "hsl(var(--cell))",
+        body: {
+          bg: "hsl(var(--body-bg))",
+          glow: "hsl(var(--body-glow))",
         },
       },
       borderRadius: {
@@ -117,8 +102,9 @@ export default {
         "scale-in": "scale-in 0.3s ease-out",
       },
       boxShadow: {
-        'panel': '0 4px 40px -8px rgba(0, 0, 0, 0.1)',
-        'glow': '0 0 30px rgba(0, 180, 216, 0.3)',
+        'panel': '0 8px 40px -12px rgba(0, 0, 0, 0.15)',
+        'glow': '0 0 40px rgba(0, 180, 216, 0.25)',
+        'card-hover': '0 12px 40px -15px rgba(0, 0, 0, 0.2)',
       },
     },
   },

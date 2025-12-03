@@ -2,58 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 220 20% 15%;
+    --background: 220 25% 97%;
+    --foreground: 220 25% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 15%;
+    --card-foreground: 220 25% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 15%;
+    --popover-foreground: 220 25% 10%;
 
-    --primary: 195 80% 40%;
+    --primary: 200 90% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 15% 93%;
-    --secondary-foreground: 220 20% 25%;
+    --secondary: 220 15% 92%;
+    --secondary-foreground: 220 25% 15%;
 
-    --muted: 210 15% 95%;
-    --muted-foreground: 220 10% 50%;
+    --muted: 220 15% 95%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 195 70% 45%;
+    --accent: 200 80% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 90%;
-    --input: 210 20% 90%;
-    --ring: 195 80% 40%;
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 200 90% 45%;
 
     --radius: 0.75rem;
 
-    /* Custom colors for body systems */
-    --skeleton: 45 70% 55%;
-    --skeleton-glow: 45 80% 65%;
-    --nervous: 270 60% 60%;
-    --nervous-glow: 270 70% 70%;
-    --heart: 0 70% 55%;
-    --heart-glow: 0 80% 65%;
-    --digestive: 150 50% 45%;
-    --digestive-glow: 150 60% 55%;
+    /* System colors */
+    --skeleton: 200 80% 55%;
+    --nervous: 270 70% 60%;
+    --heart: 355 80% 55%;
+    --digestive: 35 80% 55%;
+    --respiratory: 180 60% 50%;
+    --cell: 330 70% 60%;
 
-    /* Panel */
-    --panel-bg: 0 0% 100%;
-    --panel-border: 210 20% 92%;
-
-    /* X-ray effect */
-    --xray-bg: 210 30% 12%;
-    --xray-bone: 195 20% 85%;
-    --xray-glow: 195 100% 70%;
+    /* Dark panel for body display */
+    --body-bg: 220 30% 8%;
+    --body-glow: 200 100% 60%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -66,33 +59,35 @@
   }
 
   .dark {
-    --background: 220 20% 10%;
-    --foreground: 210 20% 95%;
+    --background: 220 25% 6%;
+    --foreground: 220 15% 95%;
 
-    --card: 220 20% 12%;
-    --card-foreground: 210 20% 95%;
+    --card: 220 25% 10%;
+    --card-foreground: 220 15% 95%;
 
-    --popover: 220 20% 12%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 220 25% 10%;
+    --popover-foreground: 220 15% 95%;
 
-    --primary: 195 80% 50%;
-    --primary-foreground: 220 20% 10%;
+    --primary: 200 90% 50%;
+    --primary-foreground: 220 25% 6%;
 
-    --secondary: 220 15% 20%;
-    --secondary-foreground: 210 20% 90%;
+    --secondary: 220 20% 15%;
+    --secondary-foreground: 220 15% 90%;
 
-    --muted: 220 15% 18%;
-    --muted-foreground: 210 15% 60%;
+    --muted: 220 20% 12%;
+    --muted-foreground: 220 10% 55%;
 
-    --accent: 195 70% 50%;
-    --accent-foreground: 220 20% 10%;
+    --accent: 200 80% 55%;
+    --accent-foreground: 220 25% 6%;
 
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 20%;
-    --input: 220 15% 20%;
-    --ring: 195 80% 50%;
+    --border: 220 20% 18%;
+    --input: 220 20% 18%;
+    --ring: 200 90% 50%;
+
+    --body-bg: 220 30% 4%;
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -111,119 +106,135 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 
   html[dir="rtl"] {
-    font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Segoe UI', Tahoma, sans-serif;
   }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  /* Animations for biological processes */
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
-  /* X-ray glow effects */
-  .glow-skeleton {
-    filter: drop-shadow(0 0 8px hsl(var(--skeleton-glow)));
+  .animate-heartbeat {
+    animation: heartbeat 1.2s ease-in-out infinite;
   }
 
-  .glow-nervous {
-    filter: drop-shadow(0 0 8px hsl(var(--nervous-glow)));
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.15); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.1); }
+    60% { transform: scale(1); }
   }
 
-  .glow-heart {
-    filter: drop-shadow(0 0 8px hsl(var(--heart-glow)));
+  .animate-breathe {
+    animation: breathe 4s ease-in-out infinite;
   }
 
-  .glow-digestive {
-    filter: drop-shadow(0 0 8px hsl(var(--digestive-glow)));
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.08); opacity: 1; }
   }
 
-  /* Panel animations */
+  .animate-signal {
+    animation: signal 2s ease-in-out infinite;
+  }
+
+  @keyframes signal {
+    0% { transform: translateX(-100%); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+  }
+
+  .animate-flow {
+    animation: flow 3s linear infinite;
+  }
+
+  @keyframes flow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
+  /* Glow effects */
+  .glow-blue {
+    box-shadow: 0 0 30px hsl(200 90% 50% / 0.4);
+  }
+
+  .glow-red {
+    box-shadow: 0 0 30px hsl(355 80% 55% / 0.4);
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 30px hsl(270 70% 60% / 0.4);
+  }
+
+  /* Panel slide animations */
   .panel-enter {
-    animation: slideIn 0.3s ease-out forwards;
-  }
-
-  .panel-exit {
-    animation: slideOut 0.3s ease-in forwards;
+    animation: slideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   @keyframes slideIn {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes slideOut {
-    from {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateX(100%);
-      opacity: 0;
-    }
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
   }
 
   html[dir="rtl"] .panel-enter {
-    animation: slideInRTL 0.3s ease-out forwards;
-  }
-
-  html[dir="rtl"] .panel-exit {
-    animation: slideOutRTL 0.3s ease-in forwards;
+    animation: slideInRTL 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   @keyframes slideInRTL {
-    from {
-      transform: translateX(-100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
   }
 
-  @keyframes slideOutRTL {
-    from {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateX(-100%);
-      opacity: 0;
-    }
+  /* Fade animations */
+  .animate-fade-up {
+    animation: fadeUp 0.5s ease-out forwards;
   }
 
-  /* Pulse animation for interactive areas */
-  .pulse-glow {
-    animation: pulseGlow 2s ease-in-out infinite;
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  @keyframes pulseGlow {
-    0%, 100% {
-      opacity: 0.6;
-    }
-    50% {
-      opacity: 1;
-    }
+  /* Interactive body region */
+  .body-region-btn {
+    @apply relative overflow-hidden transition-all duration-300;
   }
 
-  /* Body region hover */
-  .body-region {
-    cursor: pointer;
-    transition: all 0.3s ease;
+  .body-region-btn::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
   }
 
-  .body-region:hover {
-    filter: brightness(1.3);
+  .body-region-btn:hover::after {
+    transform: translateX(100%);
+  }
+
+  /* Scrollbar styling */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
   }
 }
